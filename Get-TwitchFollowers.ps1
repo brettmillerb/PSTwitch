@@ -22,20 +22,29 @@ function Get-TwitchFollowers {
         Uri     = $followersUri
     }
 
-    $followersResult = Invoke-RestMethod @invokeRestMethodSplat
-
-    if ($All) {
-        while ($followersResult.data) {
-            $followLinkUri = "{0}&after={1}" -f $Script:Uri, $followersResult.pagination.cursor
-            $followLinkResult = Invoke-RestMethod -Uri $followLinkUri -Headers $Script:Headers
-            $null = $followersResult.Add($followLinkResult)
+    $followersResult = [System.Collections.Generic.List[psobject]]::new()
+    $results = Invoke-RestMethod -Uri $followersUri -Headers $Script:Headers
+    $cursor = $results.pagination.cursor
+    $followersResult.Add($results.data)
+    if ($all) {
+        do {
+            $cursorURI = "{0}&after={1}" -f $followersURI, $cursor
+            $results = Invoke-RestMethod -Uri $cursorURI -Headers $script:Headers
+            $followersResult.Add($results.data)
+            $cursor = $results.pagination.cursor
+            if (-not $cursor) {
+                break
+            }
         }
+        until ($followersResult.Count -eq $Results.total)
     }
-    $followersResult.data | ForEach-Object {
-        [PSCustomObject]@{
-            UserName   = $_.from_name
-            UserId     = $_.from_id
-            FollowedAt = $_.followed_at
-        }
+
+    $followersResult | ForEach-Object {
+        $_ | Select-Object -property @(
+            @{name='FollowerUserId';expression={$_.from_id}},
+            @{name='FollowerUserName';expression={$_.from_name}},
+            @{name='UserName';expression={$_.to_name}},
+            @{name='FollowedOn';expression={$_.followed_at}}
+        )
     }
 }
