@@ -16,6 +16,7 @@ function Get-TwitchLiveStream {
     )
 
     process {
+
         if ($PSCmdlet.ParameterSetName -eq 'Pipeline') {
             foreach ($user in $InputObject) {
                 $streamsUri = "{0}/streams?user_login={1}" -f $Script:Uri, $user.UserName
@@ -46,6 +47,9 @@ function Get-TwitchLiveStream {
                     ViewerCount = $streamsResults.data.viewer_count
                     StartedAt   = $streamsResults.data.started_at
                 }
+            }
+            else {
+                "No Live Stream Available"
             }
         }
     }
