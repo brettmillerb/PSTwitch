@@ -2,8 +2,6 @@ param (
     $sourceFolder = $PSScriptRoot,
 
     $destinationFolder = 'output',
-
-    $destinationFolder = 'output',
     
     [switch]
     $BootStrap
