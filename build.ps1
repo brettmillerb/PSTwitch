@@ -1,13 +1,15 @@
 param (
     $sourceFolder = $PSScriptRoot,
+
     $destinationFolder = 'output',
+
     [switch]
     $BootStrap
 )
 
 if ($BootStrap) {
     if (-not (Get-Module -ListAvailable -Name platyPS)) {
-        Find-Module -Name PlatyPs | Install-Module -scope CurrentUser
+        Find-Module -Name PlatyPs | Install-Module -Scope CurrentUser -Force
     }
 }
 
