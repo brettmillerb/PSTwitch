@@ -3,6 +3,8 @@ param (
 
     $destinationFolder = 'output',
 
+    $destinationFolder = 'output',
+    
     [switch]
     $BootStrap
 )
