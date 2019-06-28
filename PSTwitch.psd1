@@ -9,28 +9,28 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'PSTwitch.psm1'
+RootModule           = 'PSTwitch.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion        = '0.0.1'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = @('Desktop', 'Core')
 
 # ID used to uniquely identify this module
-GUID = '805ef660-81e0-41a4-b26e-78d59eb40e9c'
+GUID                 = '805ef660-81e0-41a4-b26e-78d59eb40e9c'
 
 # Author of this module
-Author = 'Brett.Miller'
+Author               = 'Brett.Miller'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName          = 'None'
 
 # Copyright statement for this module
-Copyright = '(c) Brett.Miller. All rights reserved.'
+Copyright            = '(c) 2019 Brett.Miller. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description          = 'A PowerShell Module for interacting with the Twitch API'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -72,13 +72,13 @@ Copyright = '(c) Brett.Miller. All rights reserved.'
 FunctionsToExport = '*'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = '*'
+CmdletsToExport   = @()
 
 # Variables to export from this module
-VariablesToExport = '*'
+VariablesToExport = @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = '*'
+AliasesToExport   = @()
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -95,13 +95,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags       = @('Twitch', 'PSTwitch')
 
         # A URL to the license for this module.
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/brettmillerb/PSTWitch'
 
         # A URL to an icon representing this module.
         # IconUri = ''
